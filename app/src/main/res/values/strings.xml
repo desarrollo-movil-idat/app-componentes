@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">app-componentes</string>
+    <string name="texttituloregistro">REGISTRAR PERSONAS</string>
+    <string name="textnombres">Ingrese sus nombres</string>
 </resources>
