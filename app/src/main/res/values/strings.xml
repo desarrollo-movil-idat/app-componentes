@@ -11,4 +11,8 @@
     <string name="textfutbol">Futbol</string>
     <string name="textmusica">Música</string>
     <string name="textotraspreferencias">Otras Pref.</string>
+    <string name="textestadocivil">Seleccione su estado civil:</string>
+    <string name="textnotificar">¿Notificar por correo?</string>
+    <string name="textregistrar">REGISTRAR PERSONA</string>
+    <string name="textirlista">VER LISTA DE PERSONAS</string>
 </resources>
