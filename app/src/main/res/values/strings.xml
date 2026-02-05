@@ -2,4 +2,6 @@
     <string name="app_name">app-componentes</string>
     <string name="texttituloregistro">REGISTRAR PERSONAS</string>
     <string name="textnombres">Ingrese sus nombres</string>
+    <string name="textapellidos">Ingrese sus apellidos</string>
+    <string name="textgenero">Seleccione su género:</string>
 </resources>
