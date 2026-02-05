@@ -15,4 +15,6 @@
     <string name="textnotificar">¿Notificar por correo?</string>
     <string name="textregistrar">REGISTRAR PERSONA</string>
     <string name="textirlista">VER LISTA DE PERSONAS</string>
+    <string name="texttitulolista">LISTA DE PERSONAS</string>
+    <string name="textirregistro">IR A REGISTRAR PERSONAS</string>
 </resources>
