@@ -1,5 +1,6 @@
 package pe.edu.idat.app_componentes
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -84,7 +85,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         AppMensaje.enviarMensaje(binding.root, "Usuario registrado correctamente", TipoMensaje.SUCCESS)
 
     }
-    fun verUsuarios(){}
+    fun verUsuarios(){
+        //localhost:8080/usuarios?nombre=&fecha=
+        val intentLista = Intent(this, ListaActivity::class.java).apply {
+            putStringArrayListExtra("listausuarios", listUsuario)
+            //solo para un valor de tipo string, int, double, float, boolean
+            //putExtra("usuario", 2)
+        }
+        startActivity(intentLista)
+    }
     fun setearControles(){
         listHobbies.clear()
         binding.etnombres.text.clear()
