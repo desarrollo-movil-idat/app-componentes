@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     }
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         estadoCivil = if (position > 0){
-            p0!!.getItemIdAtPosition(position).toString()
+            p0!!.getItemAtPosition(position).toString()
         }else ""
     }
 
