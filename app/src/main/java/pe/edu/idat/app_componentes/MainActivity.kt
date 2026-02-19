@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
 
         binding.btnregistrar.setOnClickListener(this)
         binding.btnirlista.setOnClickListener(this)
+        binding.spestadocivil.onItemSelectedListener = this
     }
 
     //obteniendo los valores de radiobutton, checkbox, y spinner
@@ -75,15 +76,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         }
     }
     fun registrarUsuario(){
-        val usuario = binding.etnombres.text.toString()+"-"+
-                binding.etapellidos.text.toString()+"-"+
-                getGenero()+"-"+
-                listHobbies.toTypedArray().contentToString()+"-"+
-                estadoCivil+"-"+binding.swnotificar.isChecked
-        listUsuario.add(usuario)
-        setearControles()
-        AppMensaje.enviarMensaje(binding.root, "Usuario registrado correctamente", TipoMensaje.SUCCESS)
-
+        if(formularioValido()){
+            val usuario = binding.etnombres.text.toString()+"-"+
+                    binding.etapellidos.text.toString()+"-"+
+                    getGenero()+"-"+
+                    listHobbies.toTypedArray().contentToString()+"-"+
+                    estadoCivil+"-"+binding.swnotificar.isChecked
+            listUsuario.add(usuario)
+            setearControles()
+            snackbarMensaje("Usuario registrado correctamente", TipoMensaje.SUCCESS)
+        }
     }
     fun verUsuarios(){
         //localhost:8080/usuarios?nombre=&fecha=
@@ -114,6 +116,51 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
+    }
+
+    //Validación del formulario
+    private fun nombresApellidosValidos():Boolean{
+        var respuesta = true
+        if(binding.etnombres.text.toString().trim().isEmpty()){
+            binding.etnombres.isFocusableInTouchMode = true
+            binding.etnombres.requestFocus()
+            respuesta = false
+        }else if(binding.etapellidos.text.toString().trim().isEmpty()){
+            binding.etapellidos.isFocusableInTouchMode = true
+            binding.etapellidos.requestFocus()
+            respuesta = false
+        }
+        return respuesta
+    }
+    private fun generoValido(): Boolean{
+        return binding.rggenero.checkedRadioButtonId != -1
+    }
+    private fun hobbiesValido():Boolean {
+        return if(binding.cbfutbol.isChecked
+            || binding.cbmusica.isChecked || binding.cbotros.isChecked) true
+        else false
+    }
+    private fun estadoCivilValido():Boolean{
+        return estadoCivil != ""
+    }
+
+    private fun snackbarMensaje(mensaje: String, tipoMensaje: TipoMensaje){
+        AppMensaje.enviarMensaje(binding.root, mensaje, tipoMensaje)
+    }
+    private fun formularioValido():Boolean{
+        var respuesta = false
+        if(!nombresApellidosValidos()){
+            snackbarMensaje("Nombres y apellidos obligatorios", TipoMensaje.ERROR)
+        }else if(!generoValido()){
+            snackbarMensaje("El género es obligatorios", TipoMensaje.ERROR)
+        } else if(!hobbiesValido()){
+            snackbarMensaje("Seleccione al menos un hobbie", TipoMensaje.ERROR)
+        } else if(!estadoCivilValido()){
+            snackbarMensaje("Estado civil obligatorio", TipoMensaje.ERROR)
+        }else {
+            respuesta = true
+        }
+        return respuesta
     }
 
 }
